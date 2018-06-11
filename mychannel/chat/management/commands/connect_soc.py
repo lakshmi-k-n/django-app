@@ -4,7 +4,8 @@ import requests
 from websocket import create_connection
 import time
 import re
-from chat.models import Votes
+from urllib.parse import urlparse,parse_qs
+from chat.models import Video
 
 def initialize():
   url="https://slack.com/api/rtm.connect"
@@ -15,6 +16,26 @@ def initialize():
   url1=res['url']
   ws = create_connection(url1)
   return ws
+
+def get_id(url):
+    u_pars = urlparse(url)
+    quer_v = parse_qs(u_pars.query).get('v')
+    if quer_v:
+        return quer_v[0]
+    pth = u_pars.path.split('/')
+    if pth:
+        return pth[-1]
+
+def add_item(link):
+  ytid=get_id(link)
+  id_list = Video.objects.order_by('vote')
+  ids={ q.yt_id for q in id_list }
+  if ytid not in ids:
+    row=Video(url=link,yt_id=ytid)
+    row.save()
+    print("\nItem added to database")
+  else:
+    print("\nitem not added to database - item already exist!")
 
 
 def parse_yt(ws):
@@ -28,10 +49,9 @@ def parse_yt(ws):
       match = re.search(yt, result['text'])
       if match:
         print("match")
-        row=Votes(url=match.group(1))
-        row.save()
-        print("Item added to database")
-    print(result)
+        link=match.group(1)
+        add_item(link)
+    #print(result)
     time.sleep(1)
   ws.close()
 
