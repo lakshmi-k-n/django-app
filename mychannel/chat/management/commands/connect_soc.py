@@ -9,7 +9,7 @@ from chat.models import Video
 
 def initialize():
   url="https://slack.com/api/rtm.connect"
-  payload={"token":"xoxb-378217444134-377486375763-PctG9vIUJJ6w8BQVlVgmCuoT"}
+  payload={"token":"xxx"}
   r=requests.post(url,payload)
   res=json.loads(r.text)
   print(res)
