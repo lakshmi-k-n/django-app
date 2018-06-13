@@ -59,7 +59,7 @@ def parse_yt(ws):
 
 class Command(BaseCommand):
   def handle(self,**options):
-    session=initialize()
-    parse_yt(session)
+    session=initialize() #connect to RTM API and initialize the websocket connection 
+    parse_yt(session) #parse youtube links from incoming events
     
 
