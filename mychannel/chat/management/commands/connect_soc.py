@@ -7,16 +7,17 @@ import re
 from urllib.parse import urlparse,parse_qs
 from chat.models import Video
 
+#Connect to the rtm api
 def initialize():
   url="https://slack.com/api/rtm.connect"
-  payload={"token":"xxx"}
+  payload={"token":"xoxb-378217444134-377486375763-PctG9vIUJJ6w8BQVlVgmCuoT"}
   r=requests.post(url,payload)
   res=json.loads(r.text)
   print(res)
   url1=res['url']
   ws = create_connection(url1)
   return ws
-
+#parse youtube ID from youtube link
 def get_id(url):
     u_pars = urlparse(url)
     quer_v = parse_qs(u_pars.query).get('v')
@@ -25,7 +26,7 @@ def get_id(url):
     pth = u_pars.path.split('/')
     if pth:
         return pth[-1]
-
+#add link to database
 def add_item(link):
   ytid=get_id(link)
   id_list = Video.objects.order_by('vote')
@@ -37,7 +38,7 @@ def add_item(link):
   else:
     print("\nitem not added to database - item already exist!")
 
-
+#parse youtube links 
 def parse_yt(ws):
   result =  ws.recv()
   print(result)

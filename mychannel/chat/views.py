@@ -3,6 +3,7 @@ from chat.models import Video
 from django.http import HttpResponse,HttpResponseRedirect
 from .forms import MyForm
 
+#process form data,home page
 def contact(request):
     if request.method == 'POST': # If the form has been submitted...
         form = MyForm(request.POST) # A form bound to the POST data
@@ -22,7 +23,7 @@ def contact(request):
         form = MyForm() # An unbound form
         
     return render(request,'chat/contact.html',{'form':form})
-
+#render youtube embed with list of videos
 def index(request):
     url_list = Video.objects.all()
     newlist = sorted(url_list, key=lambda x: x.vote, reverse=True)
