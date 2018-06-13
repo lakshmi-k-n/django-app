@@ -5,6 +5,8 @@ Django Version 2.0
 
 Python V3.5
 
+Bootstrap used to render webpages.
+
 Configuration Steps
 
 IN YOUR SLACK ACCOUNT
