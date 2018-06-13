@@ -7,7 +7,7 @@ def get_choice():
     tup=tuple()
     finaltup=tuple()
     for k in obj:
-        tup=(k.yt_id,k.url+"--> Votes:"+str(k.vote))
+        tup=(k.yt_id,k.url+" --> Votes:"+str(k.vote))
         finaltup=finaltup+(tup,)
     return finaltup
 
