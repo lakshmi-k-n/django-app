@@ -1,6 +1,10 @@
 # YOUTUBE JUKEBOX DJANGO APP FOR SLACK
 DJANGO JUKEBOX APP : A Simple youtube jukebox in django 
 
+Django Version 2.0
+
+Python V3.5
+
 Configuration Steps
 
 IN YOUR SLACK ACCOUNT
