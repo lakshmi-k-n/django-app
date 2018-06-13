@@ -12,7 +12,7 @@ IN YOUR SLACK ACCOUNT
 
 3) Install the app to your workspace.
 
-4)Add the bot to the channel in which you wish to have your youtube links extracted from.
+4) Add the bot to the channel in which you wish to have your youtube links extracted from.
 
 DJANGO CONFIGURATION
 
